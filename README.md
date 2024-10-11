@@ -4,13 +4,13 @@ python version 3.9.6
 
 ### Visualization Methods
 
-**Probabilistic Principal Component Analysis (PPCA)**
+Probabilistic Principal Component Analysis (PPCA)
 
-**Gaussian Process Latent Variable Model (GPLVM)**
+Gaussian Process Latent Variable Model (GPLVM)
 
-**t-distributed Stochastic Neighbor Embedding (t-SNE)**
+t-distributed Stochastic Neighbor Embedding (t-SNE)
 
-**Uniform Manifold Approximation (UMAP)**
+*niform Manifold Approximation (UMAP)
 
 ## Visualization Methods: MNIST Dataset
 
