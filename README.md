@@ -12,6 +12,16 @@ t-distributed Stochastic Neighbor Embedding (t-SNE)
 
 Uniform Manifold Approximation (UMAP)
 
+IsoMap
+
+Locally Linear Embedding (LLE)
+
+Autoencoders
+
+Force Atlas 2 (FA2)
+
+Diffusion Maps
+
 ## Visualizating the MNIST Dataset
 
 ### 1. PPCA
