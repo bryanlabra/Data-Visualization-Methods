@@ -1,10 +1,18 @@
 # Benchmarking-visualization-methods
 python version 3.9.6
 
-## Datasets
-MNIST
 
-## Visualization Methods
+### Visualization Methods
+
+**Probabilistic Principal Component Analysis (PPCA)**
+
+**Gaussian Process Latent Variable Model (GPLVM)**
+
+**t-distributed Stochastic Neighbor Embedding (t-SNE)**
+
+**Uniform Manifold Approximation (UMAP)**
+
+## Visualization Methods: MNIST Dataset
 
 ### 1. Probabilistic Principal Component Analysis (PPCA)
 
