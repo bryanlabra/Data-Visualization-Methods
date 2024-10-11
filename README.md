@@ -22,7 +22,7 @@ Force Atlas 2 (FA2)
 
 Diffusion Maps
 
-## Visualizating the MNIST Dataset
+## Visualizing the MNIST Dataset
 
 ### 1. PPCA
 
@@ -70,7 +70,7 @@ what parameters can be adjusted for improved outcomes?
 
 *Tune Learning Rate*: A lower learning rate could help the model converge to a better solution, albeit more slowly.
 
-## Visualizating the PBMC dataset
+## Visualizing the PBMC dataset
 
 ### 1. Data Loading: 
 Loads the PBMC 3K dataset using Scanpy’s built-in dataset loader.
