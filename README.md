@@ -70,6 +70,7 @@ Applies sc.pp.recipe_zheng17 to normalize, log-transform, and scale the data, pr
 
 ### 3.	Dimensionality Reduction:
 PCA: Computes principal components to reduce the dataset’s dimensionality.
+
 Neighbors: Constructs a neighborhood graph, a prerequisite for clustering and UMAP/t-SNE.
 
 ### 4.	Clustering: 
@@ -80,3 +81,4 @@ UMAP and t-SNE: Calculates UMAP and t-SNE embeddings for visualizing clusters in
 
 ### 6.	Visualization:
 Plots PCA, UMAP, and t-SNE, coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
+
