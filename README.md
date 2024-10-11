@@ -80,5 +80,5 @@ Uses the Louvain algorithm to group cells into clusters, adding a louvain column
 UMAP and t-SNE: Calculates UMAP and t-SNE embeddings for visualizing clusters in 2D.
 
 ### 6.	Visualization:
-Plots PCA, UMAP, and t-SNE, coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
+Plots PCA, UMAP, t-SNE, Force Atlas 2, and Diffusion Map coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
 
