@@ -62,13 +62,21 @@ what parameters can be adjusted for improved outcomes?
 
 ## Visualizating the PBMC dataset
 
-### 1. Data Loading: Loads the PBMC 3K dataset using Scanpy’s built-in dataset loader.
-### 2.	Preprocessing: Applies sc.pp.recipe_zheng17 to normalize, log-transform, and scale the data, preparing it for analysis.
+### 1. Data Loading: 
+Loads the PBMC 3K dataset using Scanpy’s built-in dataset loader.
+
+### 2.	Preprocessing: 
+Applies sc.pp.recipe_zheng17 to normalize, log-transform, and scale the data, preparing it for analysis.
+
 ### 3.	Dimensionality Reduction:
-    PCA: Computes principal components to reduce the dataset’s dimensionality.
-	Neighbors: Constructs a neighborhood graph, a prerequisite for clustering and UMAP/t-SNE.
-### 4.	Clustering: Uses the Louvain algorithm to group cells into clusters, adding a louvain column to the data object to label each cell’s cluster.
+PCA: Computes principal components to reduce the dataset’s dimensionality.
+Neighbors: Constructs a neighborhood graph, a prerequisite for clustering and UMAP/t-SNE.
+
+### 4.	Clustering: 
+Uses the Louvain algorithm to group cells into clusters, adding a louvain column to the data object to label each cell’s cluster.
+
 ### 5.	Additional Embeddings:
-	UMAP and t-SNE: Calculates UMAP and t-SNE embeddings for visualizing clusters in 2D.
+UMAP and t-SNE: Calculates UMAP and t-SNE embeddings for visualizing clusters in 2D.
+
 ### 6.	Visualization:
-	Plots PCA, UMAP, and t-SNE, coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
+Plots PCA, UMAP, and t-SNE, coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
