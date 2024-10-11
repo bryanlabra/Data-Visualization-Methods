@@ -10,7 +10,7 @@ Gaussian Process Latent Variable Model (GPLVM)
 
 t-distributed Stochastic Neighbor Embedding (t-SNE)
 
-*niform Manifold Approximation (UMAP)
+Uniform Manifold Approximation (UMAP)
 
 ## Visualization Methods: MNIST Dataset
 
