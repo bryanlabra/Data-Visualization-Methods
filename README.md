@@ -70,7 +70,6 @@ Applies sc.pp.recipe_zheng17 to normalize, log-transform, and scale the data, pr
 
 ### 3.	Dimensionality Reduction:
 PCA: Computes principal components to reduce the dataset’s dimensionality.
-
 Neighbors: Constructs a neighborhood graph, a prerequisite for clustering and UMAP/t-SNE.
 
 ### 4.	Clustering: 
