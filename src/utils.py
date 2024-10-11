@@ -9,7 +9,9 @@ import umap
 
 # Data loading function
 def get_mnist_dataloader(batch_size=256, root="data"):
-    transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
+    transform = transforms.Compose([
+        transforms.ToTensor(),  # Converts images to [0, 1] range by default
+    ])
     mnist_train = datasets.MNIST(root=root, train=True, download=True, transform=transform)
     train_loader = DataLoader(mnist_train, batch_size=batch_size, shuffle=True)
     return train_loader
@@ -50,22 +52,33 @@ class ProjectedGPLVM(gpytorch.models.ExactGP):
         return gpytorch.distributions.MultivariateNormal(projected_mean, projected_covariance)
 
 # Autoencoder Model class
-class Autoencoder(nn.Module):
-    def __init__(self, input_dim=784, hidden_dim=128, latent_dim=2):
-        super(Autoencoder, self).__init__()
+class ConvAutoencoder(nn.Module):
+    def __init__(self, latent_dim=2):
+        super(ConvAutoencoder, self).__init__()
         
-        # Encoder network
+        # Encoder network with convolutional and linear layers
         self.encoder = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
+            nn.Conv2d(1, 32, kernel_size=3, stride=2, padding=1),  # 28x28 -> 14x14
             nn.ReLU(),
-            nn.Linear(hidden_dim, latent_dim)  # 2D latent space
+            nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1),  # 14x14 -> 7x7
+            nn.ReLU(),
+            nn.Flatten(),
+            nn.Linear(64 * 7 * 7, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, latent_dim)  # Project to the 2D latent space
         )
         
-        # Decoder network
+        # Decoder network with transposed convolutions and linear layers
         self.decoder = nn.Sequential(
-            nn.Linear(latent_dim, hidden_dim),
+            nn.Linear(latent_dim, 128),
             nn.ReLU(),
-            nn.Linear(hidden_dim, input_dim),
+            nn.Linear(128, 64 * 7 * 7),
+            nn.ReLU(),
+            nn.Unflatten(1, (64, 7, 7)),
+            nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, output_padding=1),  # 7x7 -> 14x14
+            nn.ReLU(),
+            nn.ConvTranspose2d(32, 1, kernel_size=3, stride=2, padding=1, output_padding=1),  # 14x14 -> 28x28
             nn.Sigmoid()  # Output in [0, 1]
         )
     
