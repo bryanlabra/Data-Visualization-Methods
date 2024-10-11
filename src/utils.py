@@ -5,7 +5,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import gpytorch
-from sklearn.manifold import TSNE  # Import t-SNE from scikit-learn
+from sklearn.manifold import TSNE
+import umap
 
 # Data loading function
 def get_mnist_dataloader(batch_size=256, root="data"):
@@ -81,3 +82,17 @@ def plot_tsne(data, labels, n_components=2, perplexity=30, learning_rate=200):
     plt.ylabel("t-SNE Component 2")
     plt.title("t-SNE on MNIST Dataset")
     plt.show()
+
+# UMAP function for visualization
+def plot_umap(data, labels, n_components=2, n_neighbors=15, min_dist=0.1):
+    umap_model = umap.UMAP(n_components=n_components, n_neighbors=n_neighbors, min_dist=min_dist)
+    projections = umap_model.fit_transform(data)
+    
+    plt.figure(figsize=(10, 8))
+    scatter = plt.scatter(projections[:, 0], projections[:, 1], c=labels, cmap="tab10", alpha=0.6)
+    plt.colorbar(scatter, ticks=range(10), label="Digit Class")
+    plt.xlabel("UMAP Component 1")
+    plt.ylabel("UMAP Component 2")
+    plt.title("UMAP on MNIST Dataset")
+    plt.show()
+

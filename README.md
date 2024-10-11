@@ -23,6 +23,8 @@ what parameters can be adjusted for better results?
 what parameters can be adjusted for better performance?
 
 ### 3. t-SNE
+what parameters can be adjusted for improved outcomes?
+
 *Perplexity*: Try values between 5 and 50 to see if it improves separation. Higher perplexity considers more global relationships, which may reduce overlap.
 
 *Learning Rate*: Adjusting the learning rate (e.g., between 50 and 500) might change how clusters are positioned.
@@ -30,6 +32,10 @@ what parameters can be adjusted for better performance?
 ### 4. UMAP
 
 what parameters can be adjusted for improved outcomes?
+
+*n_neighbors*: Try increasing or decreasing this to change the emphasis on local versus global structure.
+
+*min_dist*: A smaller min_dist can create tighter clusters, while a larger value can spread points further apart.
 
 ## Visualizating the XYZ dataset
 
