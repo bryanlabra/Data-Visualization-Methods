@@ -1,4 +1,4 @@
-# Benchmarking-Visualization-Methods
+# Data-Visualization-Methods
 python version 3.9.6
 
 
