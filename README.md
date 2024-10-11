@@ -80,3 +80,4 @@ UMAP and t-SNE: Calculates UMAP and t-SNE embeddings for visualizing clusters in
 
 ### 6.	Visualization:
 Plots PCA, UMAP, and t-SNE, coloring cells by Louvain clusters to visualize how cells are grouped in each projection.
+d
