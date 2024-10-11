@@ -1,11 +1,10 @@
-# utils.py
 import torch
 from torch import nn
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import gpytorch
-from sklearn.manifold import TSNE
+from sklearn.manifold import TSNE, Isomap, LocallyLinearEmbedding
 import umap
 
 # Data loading function
@@ -49,6 +48,33 @@ class ProjectedGPLVM(gpytorch.models.ExactGP):
         # Use a simple isotropic covariance for the projected data
         projected_covariance = torch.eye(projected_mean.size(1)) * 0.1  # Adjust scale if needed
         return gpytorch.distributions.MultivariateNormal(projected_mean, projected_covariance)
+
+# Autoencoder Model class
+class Autoencoder(nn.Module):
+    def __init__(self, input_dim=784, hidden_dim=128, latent_dim=2):
+        super(Autoencoder, self).__init__()
+        
+        # Encoder network
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, latent_dim)  # 2D latent space
+        )
+        
+        # Decoder network
+        self.decoder = nn.Sequential(
+            nn.Linear(latent_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, input_dim),
+            nn.Sigmoid()  # Output in [0, 1]
+        )
+    
+    def forward(self, x):
+        # Encode to latent space
+        latent = self.encoder(x)
+        # Decode back to original dimension
+        reconstruction = self.decoder(latent)
+        return latent, reconstruction
 
 # Visualization for PPCA
 def plot_ppca(projections, labels):
@@ -96,3 +122,38 @@ def plot_umap(data, labels, n_components=2, n_neighbors=15, min_dist=0.1):
     plt.title("UMAP on MNIST Dataset")
     plt.show()
 
+# Isomap function for visualization
+def plot_isomap(data, labels, n_components=2, n_neighbors=5):
+    isomap = Isomap(n_components=n_components, n_neighbors=n_neighbors)
+    projections = isomap.fit_transform(data)
+    
+    plt.figure(figsize=(10, 8))
+    scatter = plt.scatter(projections[:, 0], projections[:, 1], c=labels, cmap="tab10", alpha=0.6)
+    plt.colorbar(scatter, ticks=range(10), label="Digit Class")
+    plt.xlabel("Isomap Component 1")
+    plt.ylabel("Isomap Component 2")
+    plt.title("Isomap on MNIST Dataset")
+    plt.show()
+
+# LLE function for visualization
+def plot_lle(data, labels, n_components=2, n_neighbors=10):
+    lle = LocallyLinearEmbedding(n_components=n_components, n_neighbors=n_neighbors)
+    projections = lle.fit_transform(data)
+    
+    plt.figure(figsize=(10, 8))
+    scatter = plt.scatter(projections[:, 0], projections[:, 1], c=labels, cmap="tab10", alpha=0.6)
+    plt.colorbar(scatter, ticks=range(10), label="Digit Class")
+    plt.xlabel("LLE Component 1")
+    plt.ylabel("LLE Component 2")
+    plt.title("LLE on MNIST Dataset")
+    plt.show()
+
+# Autoencoder visualization function
+def plot_autoencoder(latent_space, labels):
+    plt.figure(figsize=(10, 8))
+    scatter = plt.scatter(latent_space[:, 0], latent_space[:, 1], c=labels, cmap="tab10", alpha=0.6)
+    plt.colorbar(scatter, ticks=range(10), label="Digit Class")
+    plt.xlabel("Latent Dimension 1")
+    plt.ylabel("Latent Dimension 2")
+    plt.title("Autoencoder Latent Space on MNIST Dataset")
+    plt.show()
