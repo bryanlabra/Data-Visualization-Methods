@@ -1,3 +1,5 @@
+The purpose of this repository is to serve as a learning exercise to better understand the appropriate use cases of various data visualization methods. 
+
 # Data-Visualization-Methods
 python version 3.9.6
 
